@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: coinpath-test
+
+  datasource:
+    url: jdbc:h2:mem:coinpathtest;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1;DEFAULT_LOCK_TIMEOUT=30000
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 10
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  flyway:
+    enabled: false # Using Hibernate ddl-auto create-drop for ultra-fast in-memory test execution
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+      group-id: test-group
+    listener:
+      auto-startup: false
+
+app:
+  jwt:
+    secret: c2VjdXJlLWNvaW5wYXRoLWp3dC1zZWNyZXQta2V5LTM1NjgyOTM4NDc1OTIwMTkzODQ3NTkyMDE5Mzg0NzU=
+    expiration-ms: 900000
+    refresh-expiration-ms: 604800000
+  kafka:
+    topics:
+      payment-events: coinpath.payment.events
+      transfer-events: coinpath.transfer.events
+      refund-events: coinpath.refund.events
+    consumer:
+      notification-group: coinpath-notification-group
+      audit-group: coinpath-audit-group
+  outbox:
+    polling-interval-ms: 60000
+    batch-size: 50
