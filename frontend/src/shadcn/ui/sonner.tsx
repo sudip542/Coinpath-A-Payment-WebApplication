@@ -1,11 +1,11 @@
 "use client"
 
-import { useTheme } from "@/components/theme/use-theme"
+import { useAppSelector } from "@/store/hooks"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 import { CircleCheckIcon, InfoIcon, TriangleAlertIcon, OctagonXIcon, Loader2Icon } from "lucide-react"
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme } = useTheme()
+  const theme = useAppSelector((state) => state.ui.theme)
 
   return (
     <Sonner

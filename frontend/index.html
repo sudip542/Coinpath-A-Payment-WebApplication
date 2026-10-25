@@ -4,18 +4,22 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ShowZen — A Movie Tickete platform</title>
-    <meta name="description" content="Where every workflow becomes an agent." />
+    <title>Coinpath — Digital Wallet & Payment Platform</title>
+    <meta name="description" content="Secure, modern fintech digital wallet and payment management platform with atomic transfers, instant deposits, and comprehensive audit tracking." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script>
-      // Applies the stored theme before first paint to avoid a light flash.
       (function () {
-        var dark = localStorage.getItem("theme") === "dark";
+        var theme = localStorage.getItem("coinpath_theme");
+        var dark = theme === "dark" || (!theme && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (theme === "light") dark = false;
         document.documentElement.classList.toggle("dark", dark);
         document.documentElement.style.colorScheme = dark ? "dark" : "light";
       })();
     </script>
   </head>
-  <body>
+  <body class="bg-background text-foreground antialiased min-h-screen font-sans selection:bg-indigo-500/20 selection:text-indigo-600 dark:selection:bg-indigo-500/30">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
