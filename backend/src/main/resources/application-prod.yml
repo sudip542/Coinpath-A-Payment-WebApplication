@@ -27,6 +27,9 @@ spring:
       sasl.mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
       sasl.jaas.config: ${KAFKA_JAAS_CONFIG:org.apache.kafka.common.security.plain.PlainLoginModule required username='${KAFKA_API_KEY}' password='${KAFKA_API_SECRET}';}
       ssl.endpoint.identification.algorithm: https
+      ssl.truststore.location: classpath:aiven-ca.pem
+      ssl.truststore.password: ${KAFKA_TRUSTSTORE_PASSWORD:secret}
+      ssl.truststore.type: PEM
     consumer:
       group-id: ${KAFKA_CONSUMER_GROUP:coinpath-prod-group}
       auto-offset-reset: earliest
