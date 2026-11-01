@@ -2,7 +2,7 @@ spring:
   application:
     name: coinpath
   profiles:
-    active: dev
+    active: prod
 
   jackson:
     serialization:
@@ -26,7 +26,7 @@ spring:
     locations: classpath:db/migration
 
 server:
-  port: 8080
+  port: ${PORT:8080}
   shutdown: graceful
 
 management:
@@ -52,7 +52,7 @@ logging:
 
 app:
   jwt:
-    secret: c2VjdXJlLWNvaW5wYXRoLWp3dC1zZWNyZXQta2V5LTM1NjgyOTM4NDc1OTIwMTkzODQ3NTkyMDE5Mzg0NzU=
+    secret: ${APP_JWT_SECRET:c2VjdXJlLWNvaW5wYXRoLWp3dC1zZWNyZXQta2V5LTM1NjgyOTM4NDc1OTIwMTkzODQ3NTkyMDE5Mzg0NzU=}
     expiration-ms: 900000 # 15 minutes
     refresh-expiration-ms: 604800000 # 7 days
   kafka:
