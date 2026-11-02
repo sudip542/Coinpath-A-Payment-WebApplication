@@ -6,6 +6,9 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 RUN mvn clean package -DskipTests
 
+# Copy the Aiven CA certificate into the container
+COPY aiven-ca.pem /app/aiven-ca.pem
+
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
